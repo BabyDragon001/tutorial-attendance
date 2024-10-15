@@ -17,18 +17,10 @@ const Login: React.FC = () => {
     try {
       setLoading(true);
       axiosInstance
-        .post(
-          "/auth/login",
-          {
-            email,
-            password,
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        )
+        .post("/auth/login", {
+          email,
+          password,
+        })
         .then((response) => {
           toast.success("Login successful!");
           // You can save the token or navigate to another page here

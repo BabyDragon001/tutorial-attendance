@@ -21,20 +21,12 @@ const Register: React.FC = () => {
     try {
       setLoading(true);
       axiosInstance
-        .post(
-          "/auth/register",
-          {
-            email,
-            name,
-            password,
-            number,
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        )
+        .post("/auth/register", {
+          email,
+          name,
+          password,
+          number,
+        })
         .then(() => {
           toast.success("Registration successful, please verify your email");
           localStorage.setItem("email", email);
