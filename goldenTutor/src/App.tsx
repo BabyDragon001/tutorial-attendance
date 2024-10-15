@@ -10,6 +10,7 @@ import Profile from "./pages/Profile";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   useAuth();
@@ -56,6 +57,7 @@ const App = () => {
 
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Toaster />
     </Router>
   );
 };
