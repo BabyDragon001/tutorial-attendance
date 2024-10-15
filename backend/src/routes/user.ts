@@ -13,9 +13,9 @@ router.post("/register", async (req: Request, res: Response) => {
 
   try {
     const otp = Math.floor(1000 + Math.random() * 9000).toString();
-    if (!email || !number) {
-      return res.status(400).send("Email and phone number are required");
-    }
+    // if (!email && !number) {
+    //   return res.status(400).send("Email and phone number are required");
+    // }
     const user = new User({
       email,
       number,

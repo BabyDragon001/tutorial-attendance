@@ -13,7 +13,6 @@ import Login from "./pages/Login";
 import { Toaster } from "react-hot-toast";
 
 const App = () => {
-  useAuth();
   return (
     <Router>
       <ScrollToTop />
