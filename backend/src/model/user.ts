@@ -23,7 +23,7 @@ const options = { timestamps: true };
 const UserSchema: Schema = new Schema(
   {
     email: { type: String, required: true, unique: true },
-    number: { type: String, required: true, unique: true },
+    number: { type: String },
     password: { type: String },
     otp: { type: String },
     otpExpires: { type: Date },
