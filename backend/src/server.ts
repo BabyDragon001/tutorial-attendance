@@ -13,11 +13,19 @@ import Leaderboard from "./routes/leaderboard";
 import Class from "./routes/class";
 
 const app = express();
+
+// CORS setup
+const corsOptions = {
+  origin: process.env.DEV_URL!, // Your frontend's URL
+  credentials: true, // Allow credentials
+};
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // Handle preflight requests
+
 app.use(cookieParser());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 
 // Connect to MongoDB
 

@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
 import AdminProtectedRoute from "./AdminProtectedRoute";
 import ScrollToTop from "./hooks/scrollTop";
-import useAuth from "./hooks/useAuth";
+// import useAuth from "./hooks/useAuth";
 import NotFound from "./pages/NotFound";
 import AdminPanel from "./pages/AdminPanel";
 import Leaderboard from "./pages/Leaderboard";
