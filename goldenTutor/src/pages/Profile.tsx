@@ -7,7 +7,7 @@ import { setLogout } from "../stateManager/UserSlice";
 const Profile = () => {
   const dispatch = useDispatch();
   function handleLogout() {
-    axiosInstance.delete("/auth/logout");
+    axiosInstance.post("/auth/logout");
     localStorage.removeItem("token");
     window.location.href = "/";
     toast.error("logout sucessfully");

@@ -28,8 +28,6 @@ const Login: React.FC = () => {
         })
         .then((response) => {
           toast.success("Login successful!");
-          // You can save the token or navigate to another page here
-          console.log(response.data); // Example: response.data.token
           dispatch(
             setLogin({ user: response.data.user, token: response.data.token })
           );

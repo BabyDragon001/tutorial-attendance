@@ -11,6 +11,7 @@ import UserRoute from "./routes/user";
 import AdminRoute from "./routes/admin";
 import Leaderboard from "./routes/leaderboard";
 import Class from "./routes/class";
+import PunchIn from "./routes/punchIn";
 
 const app = express();
 
@@ -42,6 +43,7 @@ app.use("/api/auth", UserRoute);
 app.use("/api/admin", AdminRoute);
 app.use("/api/users", Leaderboard);
 app.use("/api", Class);
+app.use("/api", PunchIn);
 
 app.use(errorHandler);
 process.on("uncaughtException", (error) => {

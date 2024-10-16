@@ -24,7 +24,7 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ admin }) => {
 
       {/* Mobile view tab navigation (fixed at the bottom) */}
       <div className="fixed bottom-8 w-full flex items-center justify-center">
-        <div className="tab h-[10vh] w-[93vw] bg-primary rounded-3xl flex items-center justify-around">
+        <div className="tab h-[10vh] w-[93vw] bg-transparent shadow-md backdrop-blur-xl rounded-3xl flex items-center justify-around">
           {/* Home Tab */}
           <Link
             to="/"
