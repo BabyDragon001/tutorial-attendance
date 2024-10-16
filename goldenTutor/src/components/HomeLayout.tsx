@@ -1,6 +1,8 @@
 import { GoHome } from "react-icons/go";
 import { FaUserGraduate } from "react-icons/fa6";
 import { GiTrophiesShelf } from "react-icons/gi";
+import { MdOutlineAdminPanelSettings } from "react-icons/md";
+
 import { Link, Outlet, useLocation } from "react-router-dom";
 
 interface HomeLayoutProps {
@@ -22,17 +24,20 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ admin }) => {
 
       {/* Mobile view tab navigation (fixed at the bottom) */}
       <div className="fixed bottom-8 w-full flex items-center justify-center">
-        <div className="tab h-[10vh] w-[90vw] bg-primary rounded-3xl flex items-center justify-around">
+        <div className="tab h-[10vh] w-[93vw] bg-primary rounded-3xl flex items-center justify-around">
           {/* Home Tab */}
           <Link
             to="/"
-            className={`flex items-center gap-3 text-white px-4 py-2 rounded-full transition-all duration-300 ${
-              isActive("/") ? "w-[120px] bg-red-800 shadow-lg" : "w-[100px]"
+            className={`relative flex items-center px-4 py-2 rounded-full transition-all duration-300 ${
+              isActive("/") ? "w-[140px] bg-red-800 shadow-lg" : "w-[60px]"
             }`}
           >
-            <GoHome className="text-secondary text-lg" />
+            <GoHome
+              className="absolute left-3 text-secondary text-2xl"
+              style={{ minWidth: "30px" }}
+            />
             <p
-              className={`whitespace-nowrap overflow-hidden transition-opacity duration-300 ${
+              className={`ml-10 text-white whitespace-nowrap overflow-hidden transition-opacity duration-300 ${
                 isActive("/") ? "opacity-100" : "opacity-0"
               }`}
             >
@@ -43,15 +48,18 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ admin }) => {
           {/* Leaderboard Tab */}
           <Link
             to="/leaderboard"
-            className={`flex items-center gap-3 text-white px-4 py-2 rounded-full transition-all duration-300 ${
+            className={`relative flex items-center px-4 py-2 rounded-full transition-all duration-300 ${
               isActive("/leaderboard")
-                ? "w-[120px] bg-red-800 shadow-lg"
-                : "w-[100px]"
+                ? "w-[140px] bg-red-800 shadow-lg"
+                : "w-[60px]"
             }`}
           >
-            <GiTrophiesShelf className="text-secondary text-3xl" />
+            <GiTrophiesShelf
+              className="absolute left-3 text-secondary text-2xl"
+              style={{ minWidth: "30px" }}
+            />
             <p
-              className={`whitespace-nowrap overflow-hidden transition-opacity duration-300 ${
+              className={`ml-10 text-white whitespace-nowrap overflow-hidden transition-opacity duration-300 ${
                 isActive("/leaderboard") ? "opacity-100" : "opacity-0"
               }`}
             >
@@ -62,15 +70,18 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ admin }) => {
           {/* Profile Tab */}
           <Link
             to="/profile"
-            className={`flex items-center gap-3 text-white px-4 py-2 rounded-full transition-all duration-300 ${
+            className={`relative flex items-center px-4 py-2 rounded-full transition-all duration-300 ${
               isActive("/profile")
-                ? "w-[120px] bg-red-800 shadow-lg"
-                : "w-[100px]"
+                ? "w-[140px] bg-red-800 shadow-lg"
+                : "w-[60px]"
             }`}
           >
-            <FaUserGraduate className="text-secondary text-lg" />
+            <FaUserGraduate
+              className="absolute left-3 text-secondary text-2xl"
+              style={{ minWidth: "30px" }}
+            />
             <p
-              className={`whitespace-nowrap overflow-hidden transition-opacity duration-300 ${
+              className={`ml-10 text-white whitespace-nowrap overflow-hidden transition-opacity duration-300 ${
                 isActive("/profile") ? "opacity-100" : "opacity-0"
               }`}
             >
@@ -82,15 +93,18 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ admin }) => {
           {admin && (
             <Link
               to="/admin"
-              className={`flex items-center gap-3 text-white px-4 py-2 rounded-full transition-all duration-300 ${
+              className={`relative flex items-center px-4 py-2 rounded-full transition-all duration-300 ${
                 isActive("/admin")
-                  ? "w-[120px] bg-red-800 shadow-lg"
-                  : "w-[100px]"
+                  ? "w-[140px] bg-red-800 shadow-lg"
+                  : "w-[60px]"
               }`}
             >
-              <FaUserGraduate className="text-secondary text-lg" />
+              <MdOutlineAdminPanelSettings
+                className="absolute left-3 text-secondary text-2xl"
+                style={{ minWidth: "30px" }}
+              />
               <p
-                className={`whitespace-nowrap overflow-hidden transition-opacity duration-300 ${
+                className={`ml-10 text-white whitespace-nowrap overflow-hidden transition-opacity duration-300 ${
                   isActive("/admin") ? "opacity-100" : "opacity-0"
                 }`}
               >
