@@ -1,7 +1,5 @@
-import React from "react";
-
 const Home = () => {
-  return <div>Home</div>;
+  return <div className="bg-bg w-[100vw] h-[200vh]"></div>;
 };
 
 export default Home;

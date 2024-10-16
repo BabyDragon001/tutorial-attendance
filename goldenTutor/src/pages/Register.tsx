@@ -32,6 +32,11 @@ const Register: React.FC = () => {
           localStorage.setItem("email", email);
           setLoading(false);
           setOpenModal(true);
+          setEmail("");
+          setName("");
+          setPassword("");
+          setconfirmPassword("");
+          setNumber("");
         })
         .catch(() => {
           setLoading(false);
