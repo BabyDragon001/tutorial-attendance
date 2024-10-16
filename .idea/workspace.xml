@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="69ea26b8-7ab4-43e4-962e-b41af1bd6fe1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/goldenTutor/src/components/HomeLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/goldenTutor/src/components/HomeLayout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goldenTutor/src/pages/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/goldenTutor/src/pages/Home.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goldenTutor/src/pages/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/goldenTutor/src/pages/Login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goldenTutor/src/pages/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/goldenTutor/src/pages/Profile.tsx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 1
+}]]></component>
+  <component name="ProjectId" id="2nXEZxevzVEF5av2nZgrEdldFre" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="69ea26b8-7ab4-43e4-962e-b41af1bd6fe1" name="Changes" comment="" />
+      <created>1729111115544</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1729111115544</updated>
+    </task>
+    <servers />
+  </component>
+</project>
