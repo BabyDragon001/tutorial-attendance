@@ -10,6 +10,8 @@ import { IoIosTimer } from "react-icons/io";
 import { useSpring, animated } from "@react-spring/web";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../axiosInstance";
+import BottomDrawer from "../components/Drawer";
+import toast from "react-hot-toast";
 
 interface Iclass {
   _id: string;
@@ -23,10 +25,10 @@ const Home = () => {
   const [isScheduleOpen, setIsScheduleOpen] = useState(false);
   const [isPunchedIn, setIsPunchedIn] = useState(false);
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [classes, setClasses] = useState<Iclass[]>([]); // State for classes
-  const [specialCode, setSpecialCode] = useState<string | null>(null); // For storing the special code
-  const [errorMessage, setErrorMessage] = useState<string | null>(null); // For handling error messages
-  const [disablePunchIn, setDisablePunchIn] = useState(false); // Disable punch-in if already active
+  const [classes, setClasses] = useState<Iclass[]>([]);
+  const [specialCode, setSpecialCode] = useState<string | null>(null);
+  const [disablePunchIn, setDisablePunchIn] = useState(false);
+
   const navigate = useNavigate();
 
   const toggleSchedule = () => {
@@ -49,6 +51,25 @@ const Home = () => {
     }, 1000);
     return () => clearInterval(timer);
   }, []);
+  useEffect(() => {
+    const savedSpecialCode = localStorage.getItem("specialCode");
+    const savedIsPunchedIn = localStorage.getItem("isPunchedIn");
+
+    if (savedSpecialCode && savedIsPunchedIn === "true") {
+      setSpecialCode(savedSpecialCode);
+      setIsPunchedIn(true);
+      setDisablePunchIn(true);
+
+      // Automatically re-enable punch-in after 2 hours if not done manually
+      setTimeout(() => {
+        localStorage.removeItem("isPunchedIn");
+        localStorage.removeItem("specialCode");
+        setDisablePunchIn(false);
+        setIsPunchedIn(false);
+        setSpecialCode(null);
+      }, 2 * 60 * 60 * 1000); // 2 hours in milliseconds
+    }
+  }, []);
 
   // Fetch classes on component mount
   useEffect(() => {
@@ -70,22 +91,25 @@ const Home = () => {
       const response = await axiosInstance.post("/punch-in", {
         userId: user?._id,
       });
-      setSpecialCode(response.data.specialCode);
-      setIsPunchedIn(true); // User is now punched in
-      setErrorMessage(null); // Clear any previous error
-      setDisablePunchIn(true); // Disable further punch-ins for 2 hours
+      const generatedCode = response.data.specialCode;
+      setSpecialCode(generatedCode);
+      setIsPunchedIn(true);
+      setDisablePunchIn(true);
 
+      localStorage.setItem("specialCode", generatedCode);
+      localStorage.setItem("isPunchedIn", "true");
+      toast.success("code generated" + generatedCode);
       // Automatically re-enable punch-in after 2 hours
       setTimeout(() => {
+        localStorage.removeItem("isPunchedIn");
+        localStorage.removeItem("specialCode");
         setDisablePunchIn(false);
         setIsPunchedIn(false);
         setSpecialCode(null); // Clear the special code after 2 hours
       }, 2 * 60 * 60 * 1000); // 2 hours in milliseconds
     } catch (error: any) {
-      setErrorMessage(
-        error.response?.data?.message || "An error occurred while punching in."
-      );
-      setIsPunchedIn(false);
+      toast.error("already active, click open code");
+      // setIsPunchedIn(false);
     }
   };
 
@@ -94,7 +118,7 @@ const Home = () => {
   ) => {
     const now = new Date();
     const currentDayIndex = now.getDay(); // 0 (Sunday) to 6 (Saturday)
-    const currentTime = now.toTimeString().split(" ")[0].slice(0, 5); // HH:MM format
+    // const currentTime = now.toTimeString().split(" ")[0].slice(0, 5); // HH:MM format
 
     // Define the days of the week for easy reference
     const daysOfWeek = [
@@ -109,7 +133,7 @@ const Home = () => {
 
     // Loop through the timetable to find the next class
     for (let i = 0; i < timetable.length; i++) {
-      const { day, time } = timetable[i];
+      const { day } = timetable[i];
       const dayIndex = daysOfWeek.indexOf(day);
 
       // Check if the class is tomorrow or next week
@@ -185,32 +209,38 @@ const Home = () => {
                 : "bg-white border-2"
             }`}
           >
-            <div className="thirdC flex flex-col items-center gap-2">
+            <div
+              className={`thirdC flex flex-col items-center gap-2 ${
+                isPunchedIn ? "none" : "bloack"
+              }`}
+            >
               <MdOutlineFingerprint
                 onClick={handlePunchIn}
-                className={`text-5xl cursor-pointer transition-colors duration-300 ${
+                className={`text-5xl  cursor-pointer transition-colors duration-300 ${
                   disablePunchIn
                     ? "text-gray-500"
                     : isPunchedIn
                     ? "text-green-500"
                     : "text-primary"
                 }`}
-                disabled={disablePunchIn}
               />
               <p className="uppercase text-xs font-bold">
                 {disablePunchIn
                   ? "Already active"
-                  : `Punch ${isPunchedIn ? "out" : "in"}`}
+                  : isPunchedIn
+                  ? "Open Code"
+                  : "Punch In"}
               </p>
-              {specialCode && <p>Special Code: {specialCode}</p>}
-              {errorMessage && <p className="text-red-500">{errorMessage}</p>}
             </div>
           </div>
         </div>
       </div>
 
+      {/* Pass special code to BottomDrawer and open it */}
+      <BottomDrawer specialCode={specialCode} />
+
       {/* Available Classes Section */}
-      <div className="w-[90%] mt-6 flex flex-wrap justify-center gap-4">
+      <div className="w-[90%] mt-6 flex flex-wrap justify-center gap-4 flex-col items-center">
         <p>Available classes</p>
         {classes?.map((classItem: Iclass) => (
           <div

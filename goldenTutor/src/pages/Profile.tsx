@@ -7,9 +7,15 @@ import { setLogout } from "../stateManager/UserSlice";
 const Profile = () => {
   const dispatch = useDispatch();
   function handleLogout() {
+    const specialCode = localStorage.getItem("specialCode");
+    if (specialCode) {
+      toast.error("You can't log out while you're still active");
+      return;
+    }
     axiosInstance.post("/auth/logout");
     localStorage.removeItem("token");
-    window.location.href = "/";
+    localStorage.removeItem("specialCode");
+    localStorage.removeItem("isPunchedIn");
     toast.error("logout sucessfully");
     dispatch(setLogout());
   }
