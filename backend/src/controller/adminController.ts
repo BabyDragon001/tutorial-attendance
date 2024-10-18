@@ -53,13 +53,23 @@ export const deleteUser = async (req: Request, res: Response) => {
 
 // Update a user's cumulative points
 export const updateUserPoints = async (req: Request, res: Response) => {
-  const { id } = req.params; // The user ID from the request parameters
+  const { id, name } = req.params; // The user ID or name from the request parameters
   const { points } = req.body; // Points from the request body
 
   try {
-    const user = await User.findById(id);
+    let user;
 
-    // Check if the user exists
+    // If an id is provided, find the user by id
+    if (id) {
+      user = await User.findById(id);
+    }
+
+    // If no ID is provided, search by the user's name
+    if (!user && name) {
+      user = await User.findOne({ name }); // Assuming the user has a 'name' field
+    }
+
+    // If user is not found by either ID or name
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
